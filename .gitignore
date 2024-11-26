@@ -1,0 +1,25 @@
+# IntelliJ specific
+.idea/
+*.iml
+
+# Build directories
+/target/
+/build/
+
+/out/
+
+/*.log
+*.class
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+/.mvn/
+/.gradle/
+/node_modules/
+
+# Spring Boot specific
+application*.yml
+application*.properties

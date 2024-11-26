@@ -1,12 +1,11 @@
 package org.example.springshop.repository;
 
-import org.example.springshop.domain.Member;
+import org.example.springshop.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public class MemberRepository extends JpaRepository<Member, Long> {
-    Optional<Member> findByEmail(String email);
-
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
     boolean existsByEmail(String email);
 }

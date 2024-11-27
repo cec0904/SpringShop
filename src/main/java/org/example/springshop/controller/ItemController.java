@@ -1,7 +1,6 @@
 package org.example.springshop.controller;
 
-import org.example.springshop.domain.Product;
-import org.example.springshop.service.ProductService;
+import org.example.springshop.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,13 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class ProductController {
+public class ItemController {
 
-    private final ProductService productService;
+    private final ItemService itemService;
 
     @GetMapping("/itemList")
     public String itemList(Model model) {
-        model.addAttribute("items", productService.findAll());
+        model.addAttribute("items", itemService.findAll());
         return "itemList";
     }
 }

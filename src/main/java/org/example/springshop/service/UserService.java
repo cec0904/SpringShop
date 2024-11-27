@@ -6,20 +6,26 @@ import org.example.springshop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public Long save(AddUserRequest req) {
-        User newUser = User.builder()
-                .email(req.getEmail())
-                .password(bCryptPasswordEncoder.encode(req.getPassword())) // 패스워드 암호화
-                .build();
-        return userRepository.save(newUser).getId();
+    public User findById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("Unexpected User"));
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("Unexpected User"));
+    }
+
+
+    @Transactional
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 
 }
